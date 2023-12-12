@@ -10,6 +10,9 @@ jobs:
     steps:
       - checkout
 
+      # Setup remote Docker environment
+      - setup_remote_docker
+
       # Build and test React project
       - run:
           name: Build and Test React Project
@@ -22,6 +25,9 @@ jobs:
       - image: docker:20.10.10
     steps:
       - checkout
+
+      # Setup remote Docker environment
+      - setup_remote_docker
 
       # Build Docker images
       - run:
