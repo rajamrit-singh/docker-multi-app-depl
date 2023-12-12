@@ -23,6 +23,9 @@ jobs:
   build_and_push_docker:
     docker:
       - image: docker:20.10.10
+        environment:
+          DOCKER_USERNAME: $DOCKER_ID
+          DOCKER_PASSWORD: $DOCKER_PASSWORD
     steps:
       - checkout
 
@@ -42,7 +45,7 @@ jobs:
       - run:
           name: Push Docker Images
           command: |
-            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+            docker login -u $DOCKER_ID -p $DOCKER_PASSWORD
             docker push rajamritsingh/multi-client
             docker push rajamritsingh/multi-nginx
             docker push rajamritsingh/multi-server
